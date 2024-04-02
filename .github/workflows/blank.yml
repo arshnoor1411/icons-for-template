@@ -18,7 +18,6 @@ jobs:
 
       - name: Copy icons to target repository
         run: |
-          mkdir -p path/to/target/repository/icons
           cp -r icons-for-template/* icons-for-template/
 
       - name: Commit and push changes
