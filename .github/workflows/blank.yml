@@ -18,7 +18,7 @@ jobs:
 
       - name: Copy icons to target repository
         run: |
-          cp icons/*.png 
+          cp -t $GITHUB_WORKSPACE icons/*.png 
 
       - name: Commit and push changes
         run: |
