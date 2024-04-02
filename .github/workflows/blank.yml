@@ -9,22 +9,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout target repository
+        uses: actions/checkout@v2
+
       - name: Checkout icons repository
         uses: actions/checkout@v2
         with:
           repository: arshnoor1411/icons-for-template
-          ref: main
           path: icons
 
       - name: Copy icons to target repository
         run: |
-          cp -t $GITHUB_WORKSPACE icons/*.png 
+          cp -t $GITHUB_WORKSPACE icons/*.png
 
-      - name: Commit and push changes
+      - name: Initialize Git repository
         run: |
-         cd $GITHUB_WORKSPACE 
+          cd $GITHUB_WORKSPACE
+          git init
+
+      - name: Commit changes
+        run: |
+          cd $GITHUB_WORKSPACE
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
           git add .
           git commit -m "Update icons"
-          git push
+
+      - name: Push changes
+        run: |
+          cd $GITHUB_WORKSPACE
+          git push --set-upstream origin main
