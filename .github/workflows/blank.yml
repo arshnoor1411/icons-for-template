@@ -18,11 +18,10 @@ jobs:
 
       - name: Copy icons to target repository
         run: |
-          cp -r icons-for-template/* icons-for-template/
+          cp icons-for-template/* .
 
       - name: Commit and push changes
         run: |
-          cd icons-for-template
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
           git add .
